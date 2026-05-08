@@ -1,0 +1,286 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                              %
+% Marginalia                                                                   %
+%                                                                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                              %
+% LICENCE INFORMATION                                                          %
+%                                                                              %
+% This program produces a LaTeX book.                                          %
+%                                                                              %
+% copyright (C) 2026 William Breaden Madden                                    %
+%                                                                              %
+% This software is released under the terms of the GNU General Public License  %
+% version 3 (GPLv3).                                                           %
+%                                                                              %
+% This program is free software: you can redistribute it and/or modify it      %
+% under the terms of the GNU General Public License as published by the Free   %
+% Software Foundation, either version 3 of the License, or (at your option)    %
+% any later version.                                                           %
+%                                                                              %
+% This program is distributed in the hope that it will be useful, but WITHOUT  %
+% ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or        %
+% FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for     %
+% more details.                                                                %
+%                                                                              %
+% For a copy of the GNU General Public License, see                            %
+% <http://www.gnu.org/licenses/>.                                              %
+%                                                                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[oneside,openany]{book}
+% Format fror single-sided pages rather than alternating left/right 
+% layouts. Start new chapters on the next available page, instead of forcing
+% them onto a right-hand page.
+
+\newcommand{\VERSION}{2026-05-08T0527Z}
+
+\usepackage[papersize={15.5cm,23.5cm}, margin=1.7cm]{geometry}
+
+% drafts
+%\usepackage{showframe}
+\usepackage{lineno}
+%\pagewiselinenumbers
+
+% mathematics
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsbsy}  % bold math
+\usepackage{bm}      % bold math
+\usepackage{cancel}  % math cancellation marks
+\usepackage{gensymb} % generic symbols like \degree
+
+% fonts
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\usepackage{polyglossia}
+\setdefaultlanguage[variant=british]{english}
+\usepackage[final,stretch=30,shrink=30]{microtype}
+\IfFontExistsTF{EB Garamond}
+  {%
+    \setmainfont[
+      ItalicFont = {EB Garamond},
+      BoldFont = EBGaramond12-Bold,
+      BoldItalicFont = {EB Garamond},
+    ]{EB Garamond}%
+  }
+  {%
+    {\setmainfont{TeX Gyre Termes}}%
+  }
+\IfFontExistsTF{B612 Mono}
+    {\setmonofont{B612 Mono}}
+    {\setmonofont{Latin Modern Mono}}
+
+% graphics, captions, and indexing
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{makeidx}
+\makeindex
+
+% units
+\usepackage{siunitx}
+\usepackage{xspace}
+\sisetup{per-mode=symbol, separate-uncertainty=true, detect-all=true}
+\newcommand{\eV}{\text{e\kern-0.15ex V}\xspace}
+\newcommand{\MeV}{\text{M\eV}\xspace}
+\newcommand{\GeV}{\text{G\eV}\xspace}
+\newcommand{\TeV}{\text{T\kern-0.1ex \eV}\xspace}
+
+% marginalia
+\usepackage{marginnote}
+\usepackage{bibentry}
+\nobibliography*
+\AtBeginDocument{\normalmarginpar}
+\newcommand{\marginnoteparsettings}{%
+    \setlength{\emergencystretch}{1em}%
+    \tolerance=800%
+}
+\renewcommand*{\raggedrightmarginnote}{\marginnoteparsettings}
+\renewcommand*{\raggedleftmarginnote}{\marginnoteparsettings}
+\renewcommand*{\marginfont}{\footnotesize}
+
+% headers
+\usepackage{fancyhdr}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+% Display only the titles in the headers, not automatic numbers.
+\makeatletter
+\renewcommand{\chaptermark}[1]{%
+    \markboth{#1}{}%
+}
+\renewcommand{\sectionmark}[1]{%
+    \markright{#1}%
+}
+\newcommand{\CurrentSectionForHeader}{%
+    \ifx\rightmark\@empty
+        \leftmark
+    \else
+        \rightmark
+    \fi
+}
+\makeatother
+% Even page headers have page number left and chapter title right.
+% Odd page headers have section title left and page number right.
+\fancyhead[L]{%
+    \ifodd\value{page}%
+        \nouppercase{\CurrentSectionForHeader}%
+    \else%
+        \thepage%
+    \fi%
+}
+\fancyhead[R]{%
+    \ifodd\value{page}%
+        \thepage%
+    \else%
+        \nouppercase{\leftmark}%
+    \fi%
+}
+% Chapter-opening pages in the `book` class use the `plain` page style by
+% default. Redefine `plain` so those pages use the same custom headers as
+% the rest of the document.
+\fancypagestyle{plain}{%
+    \fancyhf{}%
+    \fancyhead[L]{%
+        \ifodd\value{page}%
+            \nouppercase{\CurrentSectionForHeader}%
+        \else%
+            \thepage%
+        \fi%
+    }%
+    \fancyhead[R]{%
+        \ifodd\value{page}%
+            \thepage%
+        \else%
+            \nouppercase{\leftmark}%
+        \fi%
+    }%
+}
+
+\usepackage[hidelinks,pagebackref]{hyperref}
+
+% Footnote citations
+% Configure `\cite` to place the reference also in a footnote.
+\makeatletter
+\let\aq@orig@cite\cite
+\newcommand{\aq@footnoteref}[1]{%
+    \begingroup
+    \renewcommand{\thefootnote}{}%
+    \footnotetext{%
+        \aq@orig@cite{#1}\ %
+        \begingroup
+        \def\newblock{ }%
+        \bibentry{#1}%
+        \endgroup
+    }%
+    \addtocounter{footnote}{-1}%
+    \endgroup
+}
+\newcommand{\aq@footnoterefs}[1]{%
+    \begingroup
+    \@for\aq@k:=#1\do{%
+        \aq@footnoteref{\aq@k}%
+    }%
+    \endgroup
+}
+\def\cite{%
+    \@ifnextchar[{\aq@cite@opt}{\aq@cite@noopt}%
+}
+\def\aq@cite@noopt#1{%
+    \aq@orig@cite{#1}%
+    \aq@footnoterefs{#1}%
+}
+\def\aq@cite@opt[#1]#2{%
+    \aq@orig@cite[#1]{#2}%
+    \aq@footnoterefs{#2}%
+}
+\makeatother
+
+% paragraph indent
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5\baselineskip}
+\newif\iffootnoteindent
+% footnote paragraph indent (can be set false or true)
+\footnoteindentfalse
+\makeatletter
+\renewcommand\@makefntext[1]{%
+    \iffootnoteindent
+        \parindent 1em%
+        \noindent
+        \hb@xt@1.8em{\hss\@makefnmark}#1%
+    \else
+        \parindent 0pt%
+        \noindent
+        \@makefnmark\ #1%
+    \fi
+}
+\makeatother
+
+% figures
+\newcommand{\PlaceholderGraphic}[2]{%
+    \fbox{%
+        \begin{minipage}[c][#2][c]{#1}
+            \centering
+            \vspace*{\fill}
+            Placeholder figure
+            \vspace*{\fill}
+        \end{minipage}%
+    }%
+}
+\newcommand{\MarginPlaceholderFigure}[2]{%
+    \marginnote{%
+        \centering
+        \PlaceholderGraphic{\marginparwidth}{#1}\par
+        \vspace{0.4em}
+        \footnotesize #2
+    }%
+}
+\newcommand{\MarginFigure}[4][]{%
+    \refstepcounter{figure}%
+    \marginnote{%
+        \centering
+        \includegraphics[width=\marginparwidth]{#2}\par
+        \vspace{0.4em}
+        \footnotesize Figure \thefigure: #3%
+        \if\relax\detokenize{#1}\relax\else\label{#1}\fi
+    }[#4]%
+}
+
+\begin{document}
+
+\begin{titlepage}
+\vspace*{\fill}
+{\huge TEXTBOOK TITLE\par}
+\vspace{1em}
+{\Large An example textbook template with margin notes\par}
+\vspace*{\fill}
+\end{titlepage}
+
+\frontmatter
+\tableofcontents
+\clearpage
+
+\mainmatter
+
+% small left margin and wide right margin for marginalia
+\newgeometry{
+    papersize={15.5cm,23.5cm},
+    top=1.6cm,
+    bottom=1.6cm,
+    left=1.6cm,
+    right=1.6cm,
+    marginparsep=0.4cm,
+    marginparwidth=3cm,
+    includemp
+}
+\edef\marginnotetextwidth{\the\textwidth}
+
+\include{chapter_1}
+
+\backmatter
+\printindex
+
+\bibliographystyle{aqueous}
+\bibliography{references}
+
+\end{document}

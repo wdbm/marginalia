@@ -1,0 +1,53 @@
+\chapter{The first chapter}
+
+\section{Lorem ipsum}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam magna ex, dictum id convallis vel, tincidunt non lectus.\footnote{This is an example footnote.} Nulla porttitor turpis in felis malesuada, ut semper risus hendrerit.\marginnote{This is an example margin note.} Donec condimentum nulla odio, id aliquet lectus aliquet a.\marginnote{This is an example margin note shifted vertically.}[2cm]
+
+Integer cursus dolor a felis ornare lobortis. Duis varius dolor felis, in elementum nisl vestibulum vel. In sollicitudin justo nisl, sit amet dignissim libero porta hendrerit.\cite{Tianjun_1} Morbi molestie tincidunt justo a lobortis.\cite{McCulloch_Pitts_1}
+
+Etiam ac lectus ac nisl rutrum egestas. Nam ligula nisi, ultricies aliquet ligula ac, sagittis sodales dolor. Sed volutpat lacus at urna convallis, a feugiat augue tincidunt. Nam ex ipsum, placerat ut sem vel, condimentum cursus eros. Donec leo felis, auctor sit amet arcu ut, vehicula congue dolor. Duis augue ex, varius sit amet elit id, blandit facilisis orci. Aliquam euismod eget mi in ullamcorper. Donec hendrerit imperdiet lobortis.
+
+\begin{figure}[tbp]
+\centering
+\PlaceholderGraphic{0.72\textwidth}{4.8cm}
+\caption{Placeholder figure.}
+\end{figure}
+
+Duis eu neque non felis aliquet posuere.\MarginPlaceholderFigure{3.2cm}{Margin placeholder figure.} Quisque mollis eros vitae iaculis rhoncus. Nunc at arcu sapien. Aenean aliquam, metus consectetur iaculis elementum, tortor tellus placerat nisi, a condimentum nulla enim et nisi. Maecenas semper volutpat felis tristique bibendum.
+
+Nunc efficitur, nulla et scelerisque euismod, nunc magna pellentesque ligula, quis laoreet justo lorem eu augue. Vestibulum vestibulum, ipsum vitae ultrices commodo, lorem diam semper nisi, non finibus ante justo sed libero. Phasellus molestie maximus nulla id sodales. Integer pulvinar elit ut justo rhoncus cursus. Nullam pharetra dolor vitae mi vulputate, nec congue dui iaculis. Curabitur vehicula molestie mauris, imperdiet semper metus bibendum a. Aliquam vitae est lorem. Cras mollis vel mauris eget interdum. Cras gravida, nibh nec dapibus bibendum, nibh velit imperdiet ligula, in ultrices magna mauris nec orci. 
+
+\MarginFigure[fig:hhlogo]{media/HHLogo-3.png}{HH logo.}{0cm}
+
+Maecenas faucibus dictum libero. Nam pellentesque eros mi, vitae malesuada ex semper a. Suspendisse vitae ultrices diam, sed feugiat mauris. Donec malesuada commodo turpis sit amet consectetur. Mauris posuere id mauris eu accumsan. Cras eu tincidunt magna. Aliquam erat volutpat. Nulla volutpat elit quis lorem vehicula convallis. Sed eu massa sollicitudin dolor eleifend faucibus id non odio. Aenean blandit elit mauris, placerat posuere dui laoreet eu. Nullam feugiat sollicitudin lectus. Curabitur ac tortor ut turpis molestie aliquet. Sed eget varius arcu, placerat imperdiet lorem. Fusce commodo pretium eros, rhoncus egestas velit porttitor non. Phasellus ornare pretium iaculis. See Figure~\ref{fig:hhlogo}.
+
+\newpage
+
+\section[Mathematical symbols $HH\to b\bar{b}\tau^{+}\tau^{-}$]{Mathematical symbols \boldmath $HH\to b\bar{b}\tau^{+}\tau^{-}$\unboldmath}
+
+The di-Higgs final state ${HH \to b\bar{b}\tau^{+}\tau^{-}}$ features heavy-flavour jets and leptonic or hadronic ${\tau}$ decays.
+
+Equations without references:
+
+\begin{equation*}
+E = m c^{2}\text{.}
+\end{equation*}
+
+Equations with references:
+
+\begin{equation}
+\int_{0}^{\infty} e^{-x^{2}}\,\mathrm{d}x = \frac{\sqrt{\pi}}{2}\text{.}
+\end{equation}
+
+\section{Examples of unit typesetting}
+
+\begin{itemize}
+\item Speed of light \index{light!speed of}: ${c=\SI{2.99792458e8}{\metre\per\second}}$.
+\item Beam energy \index{energy}: ${\qty{6.5}{\TeV}}$ per beam.
+\item Tracker pitch: ${\qtyrange{50}{75}{\micro\metre}}$.
+\item Temperature\index{temperature} variation: ${\qty{\pm 0.3}{\kelvin}}$.
+\item Luminosity: ${\qty{2.0}{\per\femto\barn}}$.
+\item \SI{12.3}{\kilo\gram}
+\item \num{3.45e8}
+\end{itemize}
