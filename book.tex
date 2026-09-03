@@ -33,7 +33,7 @@
 % layouts. Start new chapters on the next available page, instead of forcing
 % them onto a right-hand page.
 
-\newcommand{\VERSION}{2026-09-02T2030Z}
+\newcommand{\VERSION}{2026-09-03T1800Z}
 
 \usepackage[papersize={15.5cm,23.5cm}, margin=1.7cm]{geometry}
 
@@ -56,17 +56,7 @@
 \usepackage{polyglossia}
 \setdefaultlanguage[variant=british]{english}
 \usepackage[final,stretch=30,shrink=30]{microtype}
-\IfFontExistsTF{EB Garamond}
-  {%
-    \setmainfont[
-      ItalicFont = {EB Garamond},
-      BoldFont = EBGaramond12-Bold,
-      BoldItalicFont = {EB Garamond},
-    ]{EB Garamond}%
-  }
-  {%
-    {\setmainfont{TeX Gyre Termes}}%
-  }
+\usepackage{ebgaramond}
 \IfFontExistsTF{B612 Mono}
     {\setmonofont{B612 Mono}}
     {\setmonofont{Latin Modern Mono}}
@@ -74,6 +64,8 @@
 % graphics, captions, and indexing
 \usepackage{graphicx}
 \usepackage{caption}
+\usepackage{csquotes}
+\MakeOuterQuote{"}
 \usepackage{makeidx}
 \makeindex
 
