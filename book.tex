@@ -77,9 +77,15 @@
 \usepackage{xspace}
 \sisetup{per-mode=symbol, separate-uncertainty=true, detect-all=true}
 \newcommand{\eV}{\text{e\kern-0.15ex V}\xspace}
+\newcommand{\keV}{\text{k\eV}\xspace}
 \newcommand{\MeV}{\text{M\eV}\xspace}
 \newcommand{\GeV}{\text{G\eV}\xspace}
 \newcommand{\TeV}{\text{T\kern-0.1ex \eV}\xspace}
+\DeclareSIUnit{\eV}{e\hspace{-0.15ex}V}
+\DeclareSIUnit{\keV}{ke\hspace{-0.15ex}V}
+\DeclareSIUnit{\MeV}{Me\hspace{-0.15ex}V}
+\DeclareSIUnit{\GeV}{Ge\hspace{-0.15ex}V}
+\DeclareSIUnit{\TeV}{T\hspace{-0.1ex}e\hspace{-0.15ex}V}
 
 % marginalia
 \usepackage{marginnote}
