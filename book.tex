@@ -33,7 +33,7 @@
 % layouts. Start new chapters on the next available page, instead of forcing
 % them onto a right-hand page.
 
-\newcommand{\VERSION}{2026-09-04T2357Z}
+\newcommand{\VERSION}{2026-09-06T0042Z}
 
 \usepackage[papersize={15.5cm,23.5cm}, margin=1.7cm]{geometry}
 
@@ -45,10 +45,10 @@
 % mathematics
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{amsbsy}  % bold math
 \usepackage{bm}      % bold math
 \usepackage{cancel}  % math cancellation marks
 \usepackage{gensymb} % generic symbols like \degree
+\usepackage{xspace}  % spacing after shorthand commands
 
 % fonts
 \usepackage{fontspec}
@@ -58,11 +58,12 @@
 \usepackage[final,stretch=30,shrink=30]{microtype}
 \usepackage{ebgaramond}
 \IfFontExistsTF{B612 Mono}
-    {\setmonofont{B612 Mono}}
-    {\setmonofont{Latin Modern Mono}}
+    {\setmonofont[Scale=MatchLowercase]{B612 Mono}}
+    {\setmonofont[Scale=MatchLowercase]{Latin Modern Mono}}
 
 % graphics, captions, and indexing
 \usepackage{graphicx}
+\usepackage{xcolor}
 \usepackage{caption}
 \usepackage{csquotes}
 \MakeOuterQuote{"}
@@ -74,7 +75,6 @@
 
 % units
 \usepackage{siunitx}
-\usepackage{xspace}
 \sisetup{per-mode=symbol, separate-uncertainty=true, detect-all=true}
 \newcommand{\eV}{\text{e\kern-0.15ex V}\xspace}
 \newcommand{\keV}{\text{k\eV}\xspace}
@@ -87,6 +87,59 @@
 \DeclareSIUnit{\GeV}{Ge\hspace{-0.15ex}V}
 \DeclareSIUnit{\TeV}{T\hspace{-0.1ex}e\hspace{-0.15ex}V}
 \DeclareSIUnit{\clight}{\ensuremath{\mathit{c}}}
+
+% shorthand
+\DeclareRobustCommand{\antikt}{\ensuremath{\text{anti-}k_t}\xspace}
+\DeclareRobustCommand{\kt}{\ensuremath{k_t}\xspace}
+\DeclareRobustCommand{\bbbar}{\ensuremath{b\bar{b}}\xspace}
+\DeclareRobustCommand{\bhadron}{\ensuremath{b\text{-hadron}}\xspace}
+\DeclareRobustCommand{\bhadrons}{\ensuremath{b\text{-hadrons}}\xspace}
+\DeclareRobustCommand{\bjet}{\ensuremath{b\text{-jet}}\xspace}
+\DeclareRobustCommand{\bjets}{\ensuremath{b\text{-jets}}\xspace}
+\DeclareRobustCommand{\bquark}{\ensuremath{b\text{-quark}}\xspace}
+\DeclareRobustCommand{\bquarks}{\ensuremath{b\text{-quarks}}\xspace}
+\DeclareRobustCommand{\btagged}{\ensuremath{b\text{-tagged}}\xspace}
+\DeclareRobustCommand{\btagging}{\ensuremath{b\text{-tagging}}\xspace}
+\DeclareRobustCommand{\btag}{\ensuremath{b\text{-tag}}\xspace}
+\DeclareRobustCommand{\btags}{\ensuremath{b\text{-tags}}\xspace}
+\DeclareRobustCommand{\chadron}{\ensuremath{c\text{-hadron}}\xspace}
+\DeclareRobustCommand{\chadrons}{\ensuremath{c\text{-hadrons}}\xspace}
+\DeclareRobustCommand{\cquark}{\ensuremath{c\text{-quark}}\xspace}
+\DeclareRobustCommand{\cquarks}{\ensuremath{c\text{-quarks}}\xspace}
+\DeclareRobustCommand{\CPT}{\ensuremath{CPT}\xspace}
+\DeclareRobustCommand{\etaphi}{\ensuremath{\eta\text{--}\phi}\xspace}
+\DeclareRobustCommand{\etc}{\emph{etc.}\xspace}
+\DeclareRobustCommand{\exampligratia}{\emph{e.g.}\@\xspace}
+\DeclareRobustCommand{\idest}{\emph{i.e.}\@\xspace}
+\DeclareRobustCommand{\fivesigma}{\ensuremath{5\sigma}\xspace}
+\DeclareRobustCommand{\Hbb}{\ensuremath{H\to b\bar{b}}\xspace}
+\DeclareRobustCommand{\HT}{\ensuremath{H_{\mathrm{T}}}\xspace}
+\DeclareRobustCommand{\HThad}{\ensuremath{H_{\mathrm{T}}^{\text{had.}}}\xspace}
+\DeclareRobustCommand{\largeR}{\ensuremath{\text{large-}R}\xspace}
+\DeclareRobustCommand{\LargeR}{\ensuremath{\text{Large-}R}\xspace}
+\DeclareRobustCommand{\MET}{\ensuremath{\cancel{E}_{\mathrm{T}}}\xspace}
+\DeclareRobustCommand{\MTtwo}{\ensuremath{M_{\mathrm{T}2}}\xspace}
+\DeclareRobustCommand{\pT}{\ensuremath{p_{\mathrm{T}}}\xspace}
+\DeclareRobustCommand{\pvalue}{\ensuremath{p\text{-value}}\xspace}
+\DeclareRobustCommand{\rphi}{\ensuremath{r\text{--}\phi}\xspace}
+\DeclareRobustCommand{\SUtwoL}{\ensuremath{\mathrm{SU}(2)_{\mathrm{L}}}\xspace}
+\DeclareRobustCommand{\ST}{\ensuremath{S_{\mathrm{T}}}\xspace}
+\DeclareRobustCommand{\threesigma}{\ensuremath{3\sigma}\xspace}
+\DeclareRobustCommand{\ttbar}{\ensuremath{t\bar{t}}\xspace}
+\DeclareRobustCommand{\ttbarplusbbbar}{\ensuremath{t\bar{t}+b\bar{b}}\xspace}
+\DeclareRobustCommand{\ttbarplusjets}{\ensuremath{t\bar{t}+\text{jets}}\xspace}
+\DeclareRobustCommand{\ttbb}{\ensuremath{t\bar{t}b\bar{b}}\xspace}
+\DeclareRobustCommand{\ttplusbb}{\ensuremath{t\bar{t}+b\bar{b}}\xspace}
+\DeclareRobustCommand{\ttH}{\ensuremath{t\bar{t}H}\xspace}
+\DeclareRobustCommand{\ttHbb}{\ensuremath{t\bar{t}H\left(b\bar{b}\right)}\xspace}
+\DeclareRobustCommand{\ttHtobb}{\ensuremath{t\bar{t}\left(H\to b\bar{b}\right)}\xspace}
+\DeclareRobustCommand{\tquark}{\ensuremath{t\text{-quark}}\xspace}
+\DeclareRobustCommand{\tquarks}{\ensuremath{t\text{-quarks}}\xspace}
+\DeclareRobustCommand{\Wboson}{\ensuremath{W^{\pm}\text{-boson}}\xspace}
+\DeclareRobustCommand{\Wbosons}{\ensuremath{W^{\pm}\text{-bosons}}\xspace}
+\DeclareRobustCommand{\Wpm}{\ensuremath{W^{\pm}}\xspace}
+\DeclareRobustCommand{\Zboson}{\ensuremath{Z^{0}\text{-boson}}\xspace}
+\DeclareRobustCommand{\Zzero}{\ensuremath{Z^{0}}\xspace}
 
 % marginalia
 \usepackage{marginnote}
